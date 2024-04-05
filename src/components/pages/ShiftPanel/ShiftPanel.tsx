@@ -1,12 +1,10 @@
 import React from "react";
 import { Shift } from "../../../types";
-import { Button } from "../../shared";
 import { ShiftOptions } from "./ShiftOptions";
 
 export const ShiftPanel: React.FC<{
   shifts: Shift[];
 }> = ({ shifts }) => {
-
 
   return (
     <div className="border border-blue-400 px-6 py-8">
@@ -21,5 +19,3 @@ export const ShiftPanel: React.FC<{
     </div>
   );
 }
-
-

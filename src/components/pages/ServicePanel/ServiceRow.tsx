@@ -1,12 +1,15 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setService, selectService } from '../../../redux/slices/serviceSlice';
 import { Service } from "../../../types/Service";
 import Button from "../../shared/Button";
 
 const ServiceRow: React.FC<{
   service: Service;
-}> = ({ service }) => {
+  onSelect: (selectedService: Service) => void;
+}> = ({ service, onSelect }) => {
 
-  const [selected, setSelected] = useState<boolean>(false);
+  const selectedService = useSelector(selectService);
 
   return (
     <div className="border border-blue-400 p-2 my-6 flex flex-col">
@@ -17,9 +20,9 @@ const ServiceRow: React.FC<{
 
       <div className="flex justify-end py-1 mr-4">
         <Button
-          onClick={() => { setSelected(!selected) }}
-          text={selected ? 'Seleccionado' : 'Seleccionar'}
-          customStyle={`${selected ? 'bg-gray-600' : 'bg-gray-400'} text-white`}
+          onClick={() => { /*setSelectedService()*/ onSelect(service); }}
+          text={selectedService.id === service.id ? 'Seleccionado' : 'Seleccionar'}
+          customStyle={`${selectedService.id === service.id ? 'bg-gray-600' : 'bg-gray-400'} text-white`}
         />
       </div>
     </div>

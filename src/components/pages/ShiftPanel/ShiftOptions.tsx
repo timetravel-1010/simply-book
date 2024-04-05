@@ -2,16 +2,23 @@ import React, { useState } from "react";
 import { Shift } from "../../../types";
 import { DateTime } from "luxon";
 import { Button } from "../../shared";
+import { useDispatch } from "react-redux";
+import { setShift } from "../../../redux/slices/shiftSlice";
 
 export const ShiftOptions: React.FC<{
   shift: Shift;
 }> = ({ shift }) => {
 
   const [selected, setSelected] = useState<string>("");
+  const dispatch = useDispatch();
 
   const handlerSelected = (ts: string) => {
     if (ts === selected) { setSelected(""); return }
     setSelected(ts);
+    dispatch(setShift({
+      date: dates?.shortFormat || '',
+      time: ts,
+    }));
   };
 
   const dates = formatDate(shift.date);

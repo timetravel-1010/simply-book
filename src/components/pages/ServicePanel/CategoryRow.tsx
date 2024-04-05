@@ -3,6 +3,8 @@ import { Service } from "../../../types/Service";
 import moreIcon from "../../../assets/images/more.png";
 import lessIcon from "../../../assets/images/minus.png"
 import ServiceRow from "./ServiceRow";
+import { useDispatch } from "react-redux";
+import { setService } from "../../../redux/slices/serviceSlice";
 
 
 const CategoryRow: React.FC<{
@@ -11,6 +13,14 @@ const CategoryRow: React.FC<{
 }> = ({ category, services }) => {
 
   const [showServices, setShowServices] = useState<boolean>(false);
+  const [selectedService, setSelectedService] = useState<Service | null>(null);
+  const dispatch = useDispatch();
+
+  const handlerSelectedService = (service: Service) => {
+    //if (serviceId === selectedServiceId) { setSelectedServiceId(-2); return };
+    setSelectedService(service);
+    dispatch(setService(service));
+  };
 
   return (
     <div className="my-4">
@@ -31,6 +41,7 @@ const CategoryRow: React.FC<{
       </button>
       {showServices && services.map(service => (
         <ServiceRow
+          onSelect={handlerSelectedService}
           service={service}
           key={service.id}
         />

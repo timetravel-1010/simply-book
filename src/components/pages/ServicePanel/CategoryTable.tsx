@@ -1,5 +1,5 @@
 import React from "react";
-import { Service } from "../types/Service"
+import { Service } from "../../../types/Service"
 import CategoryRow from "./CategoryRow";
 
 
@@ -22,8 +22,8 @@ const CategoryTable: React.FC<{
   });
 
   return (
-    <div className="border border-blue-400 px-6 py-8">
-      <h2 className="">
+    <div className="border border-blue-400 px-6 py-2">
+      <h2>
         <strong>
           Categorías
         </strong>

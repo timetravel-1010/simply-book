@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Service } from "../types/Service";
-import moreIcon from "../assets/images/more.png";
-import lessIcon from "../assets/images/minus.png"
+import { Service } from "../../../types/Service";
+import moreIcon from "../../../assets/images/more.png";
+import lessIcon from "../../../assets/images/minus.png"
 import ServiceRow from "./ServiceRow";
 
 

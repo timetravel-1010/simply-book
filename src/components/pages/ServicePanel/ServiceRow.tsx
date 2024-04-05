@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { Service } from "../types/Service";
-import Button from "./Button";
+import { Service } from "../../../types/Service";
+import Button from "../../shared/Button";
 
 const ServiceRow: React.FC<{
   service: Service;
@@ -15,11 +15,13 @@ const ServiceRow: React.FC<{
         <p>{service.description}</p>
       </div>
 
-      <Button
-        onClick={() => { setSelected(!selected) }}
-        bgColor={selected ? 'bg-gray-600' : 'bg-gray-400'}
-        text={selected ? 'Seleccionado' : 'Seleccionar'}
-      />
+      <div className="flex justify-end py-1 mr-4">
+        <Button
+          onClick={() => { setSelected(!selected) }}
+          text={selected ? 'Seleccionado' : 'Seleccionar'}
+          customStyle={`${selected ? 'bg-gray-600' : 'bg-gray-400'} text-white`}
+        />
+      </div>
     </div>
   );
 }

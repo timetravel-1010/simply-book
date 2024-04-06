@@ -6,6 +6,17 @@ Puedes acceder a la página web en [este enlace](https://main.d3qvfznwe898a3.amp
 
 Ahora mismo no se implementa ninguna API, por lo cual, si quieres visualizar la interfaz gráfica por completo debes seleccionar el servicio `Cut and Style` de la categoría `Hair`, puesto que es el único que cuenta con turnos disponibles. 
 
+
+# Tecnologías Utilizadas
+
+Se utilizan las siguientes tecnologías:
+
+  - ReactJS
+  - TypeScript
+  - Tailwind CSS
+  - Luxon (para manejo de fechas)
+  - Redux / React-Redux (para el manejo del estado)
+
 # Primeros Pasos
 Este proyecto fue creado con [Create React App](https://github.com/facebook/create-react-app).
 

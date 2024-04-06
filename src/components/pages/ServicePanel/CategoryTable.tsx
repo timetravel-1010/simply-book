@@ -23,7 +23,7 @@ const CategoryTable: React.FC<{
 
   return (
     <div className="border border-blue-400 px-6 py-2">
-      <h2>
+      <h2 className="mt-4">
         <strong>
           Categorías
         </strong>

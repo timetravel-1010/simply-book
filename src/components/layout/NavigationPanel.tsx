@@ -13,22 +13,22 @@ export const NavigationPanel: React.FC<{
   const { showLB, enabledLB, buttonTextLB } = useBackButton();
 
   return (
-    <div className={`${showRB ? 'border' : ''} bg-white border-blue-400 border-r-0 px-8 py-4 w-full justify-between flex mt-10`}>
+    <div className={`flex ${showRB ? 'border' : ''} bg-white border-blue-400 border-r-0 px-8 py-2 h-full w-full justify-between`}>
       {showLB ? (
         <Button
           text={buttonTextLB}
-          customStyle={`text-white ${enabledLB ? 'bg-gray-600' : 'bg-gray-400'}`}
+          customStyle={`text-white ${enabledLB ? 'bg-gray-600' : 'bg-gray-400'} w-28`}
           onClick={() => { enabledLB && dispatch(moveToPreviousStage()) }}
         />
       ) : (<div></div>)}
 
-      {showRB ? (
+      {showRB && (
         <Button
           text={buttonTextRB}
-          customStyle={`text-white ${enabledRB ? 'bg-gray-600' : 'bg-gray-400'}`}
+          customStyle={`text-white ${enabledRB ? 'bg-gray-600' : 'bg-gray-400'} w-28`}
           onClick={() => { enabledRB && dispatch(moveToNextStage()) }}
         />
-      ) : (<p>PENDING SET A FIX SIZE WHEN THERE IS NO BUTTON!!!</p>)}
+      )}
     </div>
   );
 }

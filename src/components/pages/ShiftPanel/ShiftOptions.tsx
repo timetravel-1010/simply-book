@@ -31,7 +31,7 @@ export const ShiftOptions: React.FC<{
   };
 
   return (
-    <div >
+    <div className="w-30">
       <h2 className="my-4">
         <strong>
           {date?.longFormat}
@@ -44,7 +44,7 @@ export const ShiftOptions: React.FC<{
             <Button
               key={ts}
               text={ts}
-              customStyle={`${selected === ts ? 'text-white bg-gray-600' : 'text-gray-500 bg-gray-300'}`}
+              customStyle={`w-28 ${selected === ts ? 'text-white bg-gray-600' : 'text-gray-500 bg-gray-300'}`}
               onClick={() => handlerSelected(ts)}
             />
           ))}

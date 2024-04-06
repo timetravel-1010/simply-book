@@ -44,7 +44,7 @@ export const Main: React.FC<{}> = () => {
       </div >
 
       <div className="flex flex-col fixed overflow-auto left-0 bottom-0 w-full z-10">
-        <div className="flex justify-center">
+        <div className="flex justify-center h-14">
           <NavigationPanel />
         </div>
         <div className="flex justify-center">

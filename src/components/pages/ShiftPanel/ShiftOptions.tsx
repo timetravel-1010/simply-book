@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { Shift } from "../../../types";
-import { DateTime } from "luxon";
 import { Button } from "../../shared";
 import { useDispatch } from "react-redux";
 import { setShift } from "../../../redux/slices/shiftSlice";
+import { formatDate } from "../../../utils/format";
+
 
 export const ShiftOptions: React.FC<{
   shift: Shift;
@@ -11,22 +12,29 @@ export const ShiftOptions: React.FC<{
 
   const [selected, setSelected] = useState<string>("");
   const dispatch = useDispatch();
+  const date = formatDate(shift.date);
 
   const handlerSelected = (ts: string) => {
-    if (ts === selected) { setSelected(""); return }
+    if (ts === selected) {
+      setSelected("");
+      dispatch(setShift({
+        date: '',
+        time: ''
+      }))
+      return;
+    }
     setSelected(ts);
     dispatch(setShift({
-      date: dates?.shortFormat || '',
+      date: date?.shortFormat || '',
       time: ts,
     }));
   };
 
-  const dates = formatDate(shift.date);
   return (
     <div >
       <h2 className="my-4">
         <strong>
-          {dates?.longFormat}
+          {date?.longFormat}
         </strong>
       </h2>
       <div className="flex justify-center w-full">
@@ -36,7 +44,7 @@ export const ShiftOptions: React.FC<{
             <Button
               key={ts}
               text={ts}
-              customStyle={`${selected === ts ? 'text-white' : 'text-gray-500'} ${selected === ts ? 'bg-gray-600' : 'bg-gray-300'}`}
+              customStyle={`${selected === ts ? 'text-white bg-gray-600' : 'text-gray-500 bg-gray-300'}`}
               onClick={() => handlerSelected(ts)}
             />
           ))}
@@ -44,29 +52,4 @@ export const ShiftOptions: React.FC<{
       </div>
     </div>
   );
-}
-
-
-
-function formatDate(dateString: string): { longFormat: string, shortFormat: string } | null {
-  try {
-    const parsedDate = DateTime.fromISO(dateString);
-
-    //const long = parsedDate.setLocale('es-CO').toFormat("dd 'de' MMMM");
-    const monthName = capitalizeFirstLetter(parsedDate.setLocale('es-CO').toFormat('MMMM'));
-    const longFormat = `${parsedDate.toFormat('dd')} de ${monthName}`;
-
-    // Format the date in "24/4/2024" format
-    const shortFormat = parsedDate.toFormat('dd/L/yyyy');
-
-    return { longFormat, shortFormat };
-  } catch (error) {
-    // Handle invalid date strings
-    console.error(error);
-    return null;
-  }
-}
-
-function capitalizeFirstLetter(string: string): string {
-  return string.charAt(0).toUpperCase() + string.slice(1);
 }

@@ -1,43 +1,34 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { selectService } from "../../redux/slices/serviceSlice";
-import { selectShift } from "../../redux/slices/shiftSlice";
-import { moveToNextStage, moveToPreviousStage, selectCurrentStage } from "../../redux/slices/stageSlice";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { useBackButton } from "../../hooks/useBackButton";
+import { useNextButton } from "../../hooks/useNextButton";
+import { moveToNextStage, moveToPreviousStage } from "../../redux/slices/stageSlice";
 import { Button } from "../shared";
-
 
 
 export const NavigationPanel: React.FC<{
 }> = () => {
-  const [enable, setEnable] = useState<boolean>(true);
-  const selectedService = useSelector(selectService);
-  const selectedShift = useSelector(selectShift);
-  const currentStage = useSelector(selectCurrentStage);
   const dispatch = useDispatch();
-
-  let nextBtnText = 'Siguiente';
-  console.log('stage:', currentStage);
-
-  if (currentStage === 'confirmation')
-    nextBtnText = 'Confirmar';
+  const { showRB, enabledRB, buttonTextRB } = useNextButton();
+  const { showLB, enabledLB, buttonTextLB } = useBackButton();
 
   return (
-    <div className={`${selectedService.id !== -1 ? 'border' : ''} bg-white border-blue-400 border-r-0 px-8 py-4 w-full justify-between flex mt-10`}>
-      {((currentStage !== 'serviceSelection')
-        && (
-          <Button
-            text='Anterior'
-            customStyle={`text-white bg-gray-600`}
-            onClick={() => { dispatch(moveToPreviousStage()) }}
-          />
-        ) || <div></div>)}
-      {selectedService.id !== -1 ? (
+    <div className={`${showRB ? 'border' : ''} bg-white border-blue-400 border-r-0 px-8 py-4 w-full justify-between flex mt-10`}>
+      {showLB ? (
         <Button
-          text={nextBtnText}
-          customStyle={`text-white ${true ? 'bg-gray-600' : 'bg-gray-400'}`}
-          onClick={() => { dispatch(moveToNextStage()) }}
+          text={buttonTextLB}
+          customStyle={`text-white ${enabledLB ? 'bg-gray-600' : 'bg-gray-400'}`}
+          onClick={() => { enabledLB && dispatch(moveToPreviousStage()) }}
         />
-      ) : (<div className="w-full"></div>)}
+      ) : (<div></div>)}
+
+      {showRB ? (
+        <Button
+          text={buttonTextRB}
+          customStyle={`text-white ${enabledRB ? 'bg-gray-600' : 'bg-gray-400'}`}
+          onClick={() => { enabledRB && dispatch(moveToNextStage()) }}
+        />
+      ) : (<p>PENDING SET A FIX SIZE WHEN THERE IS NO BUTTON!!!</p>)}
     </div>
   );
 }

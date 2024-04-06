@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import grayCoffee from '../../assets/images/coffee.png';
 import blueCoffee from '../../assets/images/coffee-blue.png';
 
@@ -21,7 +20,6 @@ const NavigationButton: React.FC<{
 
 
 export const NavigationMenu: React.FC<{}> = () => {
-
   const [isSelected, setIsSelected] = useState<boolean>(true);
 
   return (

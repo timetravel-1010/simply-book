@@ -1,10 +1,15 @@
 import { Shift } from "../types";
 
+
 export const getShiftsByServiceId = (id: number): Shift => {
   if (id === 3) {
     return JSON.parse(jsonResponse);
   } else {
-    return {};
+    return {
+      date: '',
+      serviceId: id,
+      availableTimeslots: [],
+    };
   }
 };
 

@@ -13,12 +13,9 @@ const CategoryRow: React.FC<{
 }> = ({ category, services }) => {
 
   const [showServices, setShowServices] = useState<boolean>(false);
-  const [selectedService, setSelectedService] = useState<Service | null>(null);
   const dispatch = useDispatch();
 
   const handlerSelectedService = (service: Service) => {
-    //if (serviceId === selectedServiceId) { setSelectedServiceId(-2); return };
-    setSelectedService(service);
     dispatch(setService(service));
   };
 

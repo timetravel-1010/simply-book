@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectService } from "../../../redux/slices/serviceSlice";
+import { setShift } from "../../../redux/slices/shiftSlice";
 import { getShiftsByServiceId } from "../../../services/shifts";
 import { Shift } from "../../../types";
 import { ShiftOptions } from "./ShiftOptions";
@@ -8,12 +9,14 @@ import { ShiftOptions } from "./ShiftOptions";
 export const ShiftPanel: React.FC<{
 }> = () => {
   const serviceId = useSelector(selectService).id;
+  const dispatch = useDispatch();
   const [shifts, setShifts] = useState<Shift[]>([]);
   const [available, setAvailable] = useState<boolean>(false);
 
   const checkShift = (shift: Shift) => {
     if (shift.availableTimeslots.length === 0) {
       setAvailable(false);
+      dispatch(setShift({ date: '', time: '' }));
       return;
     }
     setAvailable(true);
@@ -40,7 +43,7 @@ export const ShiftPanel: React.FC<{
         <ShiftOptions key={shift.date} shift={shift} />
       ))) : (
         <h2 className="my-8">
-          No hay fechas disponibles para este servio
+          No hay fechas disponibles para este servicio.
         </h2>
       )}
     </div>

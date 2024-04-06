@@ -18,7 +18,7 @@ const ServiceRow: React.FC<{
         <p>{service.description}</p>
       </div>
 
-      <div className="flex justify-end py-1 mr-4">
+      <div className="flex justify-end py-1 m-4 mb-1 mr-1">
         <Button
           onClick={() => { onSelect(service); }}
           text={selectedService.id === service.id ? 'Seleccionado' : 'Seleccionar'}

@@ -9,10 +9,10 @@ const Button: React.FC<{
 
   return (
     <button
-      className={`${customStyle} p-2 rounded w-32 px-2 md:text-base`}
+      className={`p-2 rounded px-2 md:text-base ${customStyle}`}
       onClick={onClick}
     >
-      <strong className="text-sm">
+      <strong className="">
         {text}
       </strong>
     </button>

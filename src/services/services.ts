@@ -1,10 +1,15 @@
 import { Service } from "../types";
 
+interface ServicesResponse {
+  services: Service[];
+}
+
 export const getServices = (): Service[] => {
-  return JSON.parse(servicesResponse);
+  const parsedResponse: ServicesResponse = JSON.parse(servicesAPIResponse);
+  return parsedResponse.services;
 };
 
-const servicesResponse = `{
+const servicesAPIResponse = `{
   "services": [
     {
       "id": 1,
@@ -66,6 +71,4 @@ const servicesResponse = `{
       "description": "Deep cleansing with impurity extraction and mask application.",
       "category": "Facial Care"
     }
-    // More services can be added as needed
-  ]
-}`;
+  ]}`;

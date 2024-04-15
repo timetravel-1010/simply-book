@@ -1,7 +1,3 @@
-# Aplicación web desplegada usando AWS Amplify
-
-Puedes acceder a la página web en [este enlace](https://main.d3qvfznwe898a3.amplifyapp.com/).
-
 ### Importante
 
 Ahora mismo no se implementa ninguna API, por lo cual, si quieres visualizar la interfaz gráfica por completo debes seleccionar el servicio `Cut and Style` de la categoría `Hair`, puesto que es el único que cuenta con turnos disponibles. 
